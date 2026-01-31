@@ -10,7 +10,6 @@
     @push('scripts')
         <script>
             const image = document.getElementById('image')
-
         </script>
     @endpush
 @endsection
