@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\applications;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreApplicationRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreApplicationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -40,5 +41,12 @@ class StoreApplicationRequest extends FormRequest
             "payment_method.required" => "Обязательно",
             "payment_method.in" => "Только из инпутов",
         ];
+    }
+    public function prepareForValidation(): void
+    {
+        $date = $this->request->get("prefer_date");
+        $this->merge([
+            "prefer_date" => Carbon::parse($date)->format("d.m.Y"),
+        ]);
     }
 }

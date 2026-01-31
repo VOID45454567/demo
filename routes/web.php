@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::controller(AuthController::class)->prefix('/auth')->name('auth.')->group(function () {
+Route::controller(AuthController::class)->prefix('auth')->name('auth.')->group(function () {
     Route::get('/register', 'registerPage')->name('register-page');
     Route::get('/login', 'loginPage')->name('login-page');
     Route::get('/admin/login', 'adminLoginPage')->name('admin-login');
@@ -19,9 +19,9 @@ Route::controller(AuthController::class)->prefix('/auth')->name('auth.')->group(
     Route::post('/admin/login', 'adminEntry')->name('admin-entry');
     Route::post('/logout', 'logout')->name('logout');
 });
-Route::controller(ApplicationController::class)->prefix('/application')->name('application.')->group(function () {
-    Route::get('/create', 'create')->name('application-create');
+Route::controller(ApplicationController::class)->prefix('applications')->name('applications.')->group(function () {
+    Route::get('/create', 'create')->name('create');
     Route::post('/create', 'store')->name('store-application');
     Route::patch('/{id}/set-status', 'setStatus')->name('set-status');
-    Route::post('/{id}/make-review', 'addReview  ')->name('add-review');
+    Route::post('/{id}/make-review', 'addReview')->name('add-review');
 });

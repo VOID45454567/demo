@@ -13,6 +13,12 @@ class Application extends Model
         "prefer_date",
         "status",
     ];
+    public function casts()
+    {
+        return [
+            "prefer_date" => "date",
+        ];
+    }
     public function user()
     {
         return $this->belongsTo(User::class);
