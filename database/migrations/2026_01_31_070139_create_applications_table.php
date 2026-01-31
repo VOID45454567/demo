@@ -21,6 +21,8 @@ return new class extends Migration {
             $table->date('prefer_date');
             $table->foreignId('course_id')->constrained('courses', 'id');
             $table->foreignId('user_id')->constrained('users', 'id');
+            $table->enum('status', ['created', 'pending', 'completed'])->default('created');
+            $table->enum('payment_method', ['cash', 'by_number']);
             $table->timestamps();
         });
         Schema::create("reviews", function (Blueprint $table) {
